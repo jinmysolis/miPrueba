@@ -4,6 +4,7 @@
 use Course\Http\Controllers\Controller;
 use Course\User;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Session;
 
 //use Illuminate\Http\Request;
 
@@ -113,11 +114,7 @@ class UsersController extends Controller {
                               ->withErrors($v->errors())
                               ->withInput(Request::except('password'));
                   }
-            
-            
-            
-            
-            
+         
             
 		$user = User::findOrFail($id);
                 $user->fill(Request::all());
@@ -134,7 +131,11 @@ class UsersController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//
+                $user = User::findOrFail($id);
+                $user->delete();
+                
+                Session::flash('message',$user->first_name . ' Fue Eliminado con exicto');
+                return redirect()->route('admin.users.index');
 	}
 
 }
