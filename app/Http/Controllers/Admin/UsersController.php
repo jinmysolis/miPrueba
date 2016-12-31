@@ -3,14 +3,15 @@
 //use Course\Http\Requests;
 use Course\Http\Controllers\Controller;
 use Course\User;
+use Course\Http\Requests\CreateUserRequest;
+use Course\Http\Requests\EditUserRequest;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Session;
-
-//use Illuminate\Http\Request;
-
+use Illuminate\Http\Request;
 
 
-use Illuminate\Support\Facades\Request;
+
+//use Illuminate\Support\Facades\Request;
 
 class UsersController extends Controller {
 
@@ -18,10 +19,22 @@ class UsersController extends Controller {
 	 * Display a listing of the resource.
 	 *
 	 * @return Response
+         * 
+         * 
+         * 
 	 */
-	public function index()
-	{
-		$users= User::paginate(5);
+    
+    
+            public function __construct(){
+                
+                $this->middleware('auth');
+            }
+
+	public function index(Request $request)
+	{     
+                
+           
+            $users= User::name($request->get('name'))->type($request->get('type'))->orderBy('id','DESC')->paginate(10);
                         
                return view('admin.users.index', compact('users'));
 	}
@@ -41,27 +54,22 @@ class UsersController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store(Request $request)
-	{
-		  $data= Request::all();
-                  $rules= array(
-                      'first_name'=>'required',
-                      'last_name'=> 'required',
-                      'email'=>'required|email|unique:users,email',
-                      'password'=>'required',
-                      'type'=>'required|in:user,admin',
-                      
-                      );
-                 $v= Validator::make($data, $rules);
-                  if ($v->fails())
-                  {
-                      return redirect()->back()
-                              ->withErrors($v->errors())
-                              ->withInput(Request::except('password'));
-                  }
-                  
-                  $user= User::create($data);
+	public function store(CreateUserRequest $request)
+	{       
+                  $user= User::create($request->all());
                   return redirect()->route('admin.users.index');
+            
+            
+            
+//                 $v= Validator::make($data, $rules);
+//                  if ($v->fails())
+//                  {
+//                      return redirect()->back()
+//                              ->withErrors($v->errors())
+//                              ->withInput(Request::except('password'));
+//                  }
+                  
+                  
                   
 	}
 
@@ -94,30 +102,12 @@ class UsersController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update(Request $request, $id)
+	public function update(EditUserRequest $request, $id)
                 
 	{
-            
-             $data= Request::all();
-                  $rules= array(
-                      'first_name'=>'required',
-                      'last_name'=> 'required',
-                      'email'=>'required|email',
-                      'password'=>'required',
-                      'type'=>'required',
-                      
-                      );
-                 $v= Validator::make($data, $rules);
-                  if ($v->fails())
-                  {
-                      return redirect()->back()
-                              ->withErrors($v->errors())
-                              ->withInput(Request::except('password'));
-                  }
-         
-            
+             
 		$user = User::findOrFail($id);
-                $user->fill(Request::all());
+                $user->fill($request->all());
                 $user->save();
                 return redirect()->route('admin.users.index');
                

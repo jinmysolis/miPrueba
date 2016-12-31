@@ -1,5 +1,13 @@
 <?php namespace Course\Http\Controllers;
 
+use Course\Http\Controllers\Controller;
+use Course\User;
+use Course\Http\Requests\CreateUserRequest;
+use Course\Http\Requests\EditUserRequest;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Http\Request;
+
 class HomeController extends Controller {
 
 	/*
@@ -18,10 +26,7 @@ class HomeController extends Controller {
 	 *
 	 * @return void
 	 */
-	public function __construct()
-	{
-		$this->middleware('auth');
-	}
+	
 
 	/**
 	 * Show the application dashboard to the user.
@@ -32,5 +37,16 @@ class HomeController extends Controller {
 	{
 		return view('home');
 	}
-
+        
+        public function inicio(Request $request)
+	{
+            
+            $users= User::name($request->get('name'))->type($request->get('type'))->orderBy('id','DESC')->paginate(10);
+                        
+            return view('inicio', compact('users'));
+            
+            
+	}
+        
+        
 }

@@ -16,7 +16,7 @@
                                    @include('admin.users.partials.formulario')
                                   
                                    <button type="submit" class="btn btn-info">Actualizar Usuario</button>
-                                   @include('admin.users.partials.delete')
+
                                   {!!Form::close()!!}
                                   
                                  

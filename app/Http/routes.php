@@ -11,9 +11,11 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/', 'WelcomeController@index');
+Route::get('/', 'HomeController@inicio');
 
 Route::get('home', 'HomeController@index');
+Route::get('inicio', 'HomeController@inicio');
+
 
 Route::controllers([
 	'users' => 'UsersController',
@@ -31,6 +33,6 @@ Route::group(['prefix' => 'admin','namespace'=> 'Admin'],function (){
       
 });
 
-Route::group(['middleware' => ['web']], function () {
-    //routes here
-});
+//Route::group(['middleware' => ['web']], function () {
+//    //routes here
+//});

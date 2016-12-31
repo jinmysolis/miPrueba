@@ -7,14 +7,9 @@ class EditUserRequest extends Request {
 
 	
         public function __construct(Route $route) {
+            
             $this->route=$route;
         }
-
-
-
-
-
-
 
 
         public function authorize()
@@ -33,8 +28,8 @@ class EditUserRequest extends Request {
 		      'first_name'=>'required',
                       'last_name'=> 'required',
                       'email'=>'required|unique:users,email,'.$this->route->getParameter('users'),
-                      'password'=>'',
-                      'type'=>'required|in:user,admin',
+                      'password'=>'required',
+                     'type'=>'required|in:administrador,editor,colaborador,usuario',
 		];
 	}
 

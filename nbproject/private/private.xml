@@ -3,13 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/MiApp/resources/views/app.blade.php</file>
-            <file>file:/C:/xampp/htdocs/MiApp/app/User.php</file>
             <file>file:/C:/xampp/htdocs/MiApp/app/Http/Controllers/Admin/UsersController.php</file>
+            <file>file:/C:/xampp/htdocs/MiApp/resources/lang/es/validation.php</file>
+            <file>file:/C:/xampp/htdocs/MiApp/app/Http/Middleware/IsAdmin.php</file>
+            <file>file:/C:/xampp/htdocs/MiApp/resources/views/admin/users/partials/formulario.blade.php</file>
+            <file>file:/C:/xampp/htdocs/MiApp/app/Http/Middleware/Authenticate.php</file>
+            <file>file:/C:/xampp/htdocs/MiApp/config/options.php</file>
             <file>file:/C:/xampp/htdocs/MiApp/resources/views/admin/users/index.blade.php</file>
-            <file>file:/C:/xampp/htdocs/MiApp/.gitignore</file>
+            <file>file:/C:/xampp/htdocs/MiApp/database/seeds/UserTableSeeder.php</file>
+            <file>file:/C:/xampp/htdocs/MiApp/database/seeds/AdminTableSeeder.php</file>
             <file>file:/C:/xampp/htdocs/MiApp/app/Http/routes.php</file>
-            <file>file:/C:/xampp/htdocs/MiApp/resources/views/admin/users/edit.blade.php</file>
         </group>
     </open-files>
 </project-private>

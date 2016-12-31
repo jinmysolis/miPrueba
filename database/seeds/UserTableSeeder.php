@@ -16,16 +16,18 @@ class UserTableSeeder extends Seeder {
 
      $faker=Faker::create();
 
-      for($i = 0; $i < 30; $i++)
+      for($i = 0; $i < 50; $i++)
       {
-
           
-		    $id= \DB::table('users')->insertGetId(array(
+          
+          
+            $id= \DB::table('users')->insertGetId(array(
             'first_name'     => $faker->firstName,
             'last_name'      => $faker->lastName,
             'email'          => $faker->unique()->email,
             'password'       => \Hash::make('bebe'),
-            'type'           => 'user'
+            'type'           => $faker->randomElement(['editor','colaborador','usuario']),
+          
 
 			));
 

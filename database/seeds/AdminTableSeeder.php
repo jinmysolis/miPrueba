@@ -19,7 +19,8 @@ class AdminTableSeeder extends Seeder {
             'last_name'      => 'solis',
             'email'          => 'solisjinmy@gmail.com',
             'password'       => \Hash::make('137525627jinmy'),
-            'type'           => 'admin'
+            'type'           => 'Administrador',
+           
 
 			));
 
